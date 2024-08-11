@@ -11,8 +11,6 @@ The **Pinterest Web Scraper** is a Python-based tool designed to download public
 ## Features
 
 - 🚀 **Scrape Public Pins**: Download all images from a specified Pinterest user's publicly saved pins.
-- 📋 **Board-specific Scraping**: Option to scrape pins from specific boards instead of the entire account.
-- 📁 **Customizable Output**: Save downloaded pins to a specified directory.
 - 🛡️ **Error Handling**: Handles common issues such as rate limiting and inaccessible pins.
 
 ## Requirements
