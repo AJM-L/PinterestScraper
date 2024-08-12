@@ -44,23 +44,31 @@ def scrapePage(pageurl = 'https://www.pinterest.com/unfundedaccount/cyberfetish/
             time.sleep(SLEEP_TIME)  # Adjust the sleep time if needed
 
             # Refresh the list of image elements after scrolling
-            try:
-                images = driver.find_elements(By.TAG_NAME, 'img')
-                for img in images:
+            
+            images = driver.find_elements(By.TAG_NAME, 'img')
+            for img in images:
+                try:
                     img_url = img.get_attribute('src')
                     description = img.get_attribute('alt') or 'No description'
                     if img_url and img_url not in image_urls:
                         image_urls.add(img_url)
                         if len(image_urls)%100==0:
-                            print("searched: " + str(len(image_urls)) + "images")
-            except Exception as e:
-                print(f"Error while extracting images: {e}")
+                                print("searched: " + str(len(image_urls)) + "images")
+                            
+                except Exception as e:
+                    print(f"Error while extracting images: {e}")
+                    continue
+
+                finally:
+                    pass
 
             # Calculate new scroll height and check if it has reached the bottom
             new_height = driver.execute_script("return document.body.scrollHeight")
             if new_height == last_height:
                 break
             last_height = new_height
+    except Exception as e:
+        print(e)
 
     finally:
         # Quit the WebDriver
